@@ -22,7 +22,7 @@ export default function Main({ navigation }) {
         if (!userId || !token) return;
 
         const res = await axios.get(
-          `http://192.168.0.15:8080/api/user/${userId}`,
+          `https://port-0-autoreportsystem-back-m8u790x9772c113e.sel4.cloudtype.app/api/user/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -60,9 +60,12 @@ export default function Main({ navigation }) {
       addr.street || ""
     }`;
 
-    await axios.post(`http://192.168.0.15:8080/api/sms/${userId}`, {
-      address: fullAddress,
-    });
+    await axios.post(
+      `https://port-0-autoreportsystem-back-m8u790x9772c113e.sel4.cloudtype.app/api/sms/${userId}`,
+      {
+        address: fullAddress,
+      }
+    );
   };
 
   const handleLogout = async () => {
@@ -71,7 +74,12 @@ export default function Main({ navigation }) {
     navigation.replace("Login");
   };
 
-  if (!user) return <Text>로딩 중</Text>;
+  if (!user)
+    return (
+      <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+        <Text style={styles.logoutText}>로그아웃</Text>
+      </TouchableOpacity>
+    );
 
   return (
     <View style={styles.container}>

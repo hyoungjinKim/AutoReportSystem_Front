@@ -71,7 +71,7 @@ export default function Signup({ navigation }) {
 
     try {
       const response = await axios.post(
-        "http://192.168.0.15:8080/api/auth/signup",
+        "https://port-0-autoreportsystem-back-m8u790x9772c113e.sel4.cloudtype.app/api/auth/signup",
         payload
       );
 
